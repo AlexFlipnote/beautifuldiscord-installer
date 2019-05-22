@@ -22,12 +22,14 @@ class Installer:
 
         self.main_script()
 
-    def printer(self, *lines):
+    def printer(self, *lines: str):
+        """ Make it easier to print multiple lines """
         return print(
             "\n".join(lines)
         )
 
     def print_options(self):
+        """ The lovely main menu (start of script print) """
         self.printer(
             "Welcome to BeautifulDiscord install tool",
             self.line,
@@ -41,6 +43,7 @@ class Installer:
         )
 
     def write_theme_file(self, download_theme: bool = True):
+        """ Write the .css file inside Documents folder """
         if download_theme:
             file = self.get_file(self.theme_url)
         else:
@@ -58,6 +61,7 @@ class Installer:
             return False
 
     def inject_theme(self):
+        """ Inject the theme powered by BeautifulDiscord """
         exists = os.path.isfile(f'{self.location + self.filename}')
         if not exists:
             return False
@@ -73,6 +77,7 @@ class Installer:
         )
 
     def get_file(self, url: str):
+        """ Download file from URL """
         print("Downloading file...")
         try:
             file = requests.get(url).content
@@ -83,6 +88,7 @@ class Installer:
             return False
 
     def choose(self):
+        """ Choice validation in numbers """
         userchoice = input("> ")
         try:
             num = int(userchoice)
@@ -95,6 +101,7 @@ class Installer:
             return False
 
     def main_script(self):
+        """ Starts with __init__ """
         while True:
             self.print_options()
             userchoice = self.choose()
