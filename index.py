@@ -8,18 +8,13 @@ from utils import app as beautifuldiscord
 
 class Installer:
     def __init__(self):
-        self.version = "1.0.3"
+        self.version = "1.0.4"
         self.line = "----------------------------------------"
         self.name = "BeautifulDiscord"
         self.theme_url = "https://raw.githubusercontent.com/AlexFlipnote/Discord_Theme/master/autotheme.css"
         self.choices = [1, 2, 3, 4, 5, 6, 7, 8]
 
-        saveDir = os.path.expanduser("~/Documents/DiscordTheme/")
-        if not os.path.exists(saveDir):
-            os.makedirs(saveDir)
-            print("Created a new folder in your Documents called: DiscordTheme")
-
-        self.location = saveDir
+        self.location = os.path.expanduser("~/Documents/DiscordTheme/")
         self.filename = "autotheme.css"
 
         self.main_script()
@@ -57,6 +52,7 @@ class Installer:
 
         if not file:
             print("Failed to inject file, got nothing from downloader...")
+            return False
 
         if custom_path:
             location = custom_path
@@ -89,6 +85,11 @@ class Installer:
             f"Done adding theme, you can edit it at this location:",
             path
         )
+
+    def create_default_path(self):
+        if not os.path.exists(self.location):
+            os.makedirs(self.location)
+            print("Created a new folder in your Documents called: DiscordTheme")
 
     def get_file(self, url: str):
         """ Download file from URL """
@@ -146,9 +147,11 @@ class Installer:
                 break
 
         if userchoice == 1:
+            self.create_default_path()
             self.write_theme_file()
             self.inject_theme()
         if userchoice == 2:
+            self.create_default_path()
             self.write_theme_file(download_theme=False)
             self.inject_theme()
         if userchoice == 3:
