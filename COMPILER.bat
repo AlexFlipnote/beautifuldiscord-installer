@@ -6,4 +6,5 @@ set filename="beautifuldiscord"
 pyinstaller index.py --onefile --icon=logo.ico --name %filename%.exe
 
 :: Copy compiled file to root
+del %filename%.exe
 copy dist\%filename%.exe .
