@@ -8,7 +8,7 @@ from utils import app as beautifuldiscord
 
 class Installer:
     def __init__(self):
-        self.version = "1.0.6"
+        self.version = "1.0.7"
         self.line = "----------------------------------------"
         self.name = "BeautifulDiscord"
         self.theme_url = "https://raw.githubusercontent.com/AlexFlipnote/Discord_Theme/master/autotheme.css"
